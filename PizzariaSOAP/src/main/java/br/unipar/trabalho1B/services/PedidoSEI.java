@@ -14,7 +14,7 @@ public interface PedidoSEI {
     @WebMethod
     String salvarNovoPedido(@WebParam(name = "valorTotal") Double valorTotal,
                             @WebParam(name = "observacoes") String observacoes,
-                            @WebParam(name = "status") String status,
+                            (name = "status") String status = "Recebido",
                             @WebParam(name = "cliente")Cliente cliente) throws PizzariaException;
 
     @WebMethod
