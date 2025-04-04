@@ -17,7 +17,7 @@ public interface Itens_PedidoSEI {
     String salvarNovosItens(@WebParam(name = "tamanho") String tamanho,
                             @WebParam(name = "quantidade") int quantidade,
                             @WebParam(name = "valor_unitario") Double valor_unitario,
-                            @WebParam(name = "valor_total") Double valor_total,
+                            (name = "valor_total") ((Double) valor_unitario * quantidade),
                             @WebParam(name = "pedido") Pedido pedido,
                             @WebParam(name = "pizza") Pizza pizza,
                             @WebParam(name = "borda") Borda borda) throws PizzariaException;
