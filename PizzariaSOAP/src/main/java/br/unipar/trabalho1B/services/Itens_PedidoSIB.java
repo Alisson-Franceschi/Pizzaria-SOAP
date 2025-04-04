@@ -32,7 +32,7 @@ public class Itens_PedidoSIB implements Itens_PedidoSEI {
             itensEditados.setTamanho(itens.getTamanho());
             itensEditados.setQuantidade(itens.getQuantidade());
             itensEditados.setValor_unitario(itens.getValor_unitario());
-            itensEditados.setValor_total(itens.getValor_total());
+            itensEditados.setValor_total((itens.getValor_unitario) * (itens.getQuantidade);
             itensEditados.setPedido(itens.getPedido());
             itensEditados.setPizza(itens.getPizza());
             itensEditados.setBorda(itens.getBorda());
