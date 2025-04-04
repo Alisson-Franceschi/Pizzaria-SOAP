@@ -1,6 +1,8 @@
 package br.unipar.trabalho1B.services;
 
 import br.unipar.trabalho1B.daos.Itens_PedidoDAO;
+import br.unipar.trabalho1B.daos.Itens_BordaDAO;
+import br.unipar.trabalho1B.daos.Itens_PizzaDAO;
 import br.unipar.trabalho1B.exceptions.PizzariaException;
 import br.unipar.trabalho1B.models.Borda;
 import br.unipar.trabalho1B.models.Itens_Pedido;
@@ -25,6 +27,19 @@ public class Itens_PedidoSIB implements Itens_PedidoSEI {
 
     @Override
     public String editarItens(Itens_Pedido itens) throws PizzariaException {
+        
+        PizzaDAO pizzaDAO = new PizzaDAO();
+        Pizza pizzaExistente = pizzaDAO.buscarPorId(pizza.getId());
+        if (pizzaExistente == null) {
+            throw new PizzariaException("Pizza não encontrada!");
+        }
+
+        BordaDAO bordaDAO = new BordaDAO();
+        Borda bordaExistente = bordaDAO.buscarPorId(borda.getId());
+        if (bordaExistente == null) {
+            throw new PizzariaException("Borda não encontrada!");
+        }
+        
         Itens_PedidoDAO dao = new Itens_PedidoDAO();
         Itens_Pedido itensEditados = dao.buscarPorId(itens.getId());
 
@@ -36,6 +51,18 @@ public class Itens_PedidoSIB implements Itens_PedidoSEI {
             itensEditados.setPedido(itens.getPedido());
             itensEditados.setPizza(itens.getPizza());
             itensEditados.setBorda(itens.getBorda());
+
+            PizzaDAO pizzaDAO = new PizzaDAO();
+            Pizza pizzaExistente = pizzaDAO.buscarPorId(itens.getPizza().getId());
+            if (pizzaExistente == null) {
+                throw new PizzariaException("Pizza não encontrada!");
+            }
+
+            BordaDAO bordaDAO = new BordaDAO();
+            Borda bordaExistente = bordaDAO.buscarPorId(itens.getBorda().getId());
+            if (bordaExistente == null) {
+                throw new PizzariaException("Borda não encontrada!");
+            }
 
             Itens_PedidoDAO daoEditar = new Itens_PedidoDAO();
             daoEditar.atualizar(itensEditados);
